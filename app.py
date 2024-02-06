@@ -65,22 +65,22 @@ def type_scatter(df, house_type):
     return fig
 
 def plot_price_trends_for_selection(df, sgg_nms, house_type):
-    # Prepare a figure to plot trends for selected SGG_NM and HOUSE_TYPE
+    # 선택된 SGG_NM and HOUSE_TYPE 시각화 
     fig = go.Figure()
     
     for sgg_nm in sgg_nms:
-        # Filter data for each selected SGG_NM and HOUSE_TYPE
+        # 선택된 SGG_NM and HOUSE_TYPE 필터링 
         filtered_df = df[(df['SGG_NM'] == sgg_nm) & (df['HOUSE_TYPE'] == house_type)]
         
         if not filtered_df.empty:
-            # Aggregate data by DEAL_YMD to calculate average price
+            # 평균 매매값 추출 
             price_trends = filtered_df.groupby(filtered_df['DEAL_YMD'].dt.to_period('M'))['OBJ_AMT'].mean().reset_index()
             price_trends['DEAL_YMD'] = price_trends['DEAL_YMD'].dt.to_timestamp()
             
-            # Add each SGG_NM trend to the figure
+            # 각 자치구 그래프 추
             fig.add_trace(go.Scatter(x=price_trends['DEAL_YMD'], y=price_trends['OBJ_AMT'], mode='lines', name=sgg_nm))
     
-    # Update layout for the combined figure
+    # 그래프 레이아웃 업데이
     fig.update_layout(title=f'{house_type} 가격 변동 추이 비교', xaxis_title='계약일', yaxis_title='평균 거래 가격 (만원)', hovermode="x unified")
     return fig
 
@@ -131,13 +131,13 @@ def main():
         df = load_data('./data/data.csv') 
         df['DEAL_YMD'] = pd.to_datetime(df['DEAL_YMD'], format='%Y%m%d')  
         
-       # Select multiple SGG_NM values for comparison
+       # 다중 자치구 선택 
         selected_sgg_nms = st.sidebar.multiselect('자치구명을 선택하세요.', df['SGG_NM'].unique(), default=df['SGG_NM'].unique()[0:2])
     
-        # Select HOUSE_TYPE for analysis
+        # 부동산 유형 선택 
         selected_house_type = st.sidebar.selectbox('주택 유형을 선택하세요.', df['HOUSE_TYPE'].unique())
     
-        # Generate and display the visualization
+        # 시각화 
         if selected_sgg_nms and selected_house_type:
             fig = plot_price_trends_for_selection(df, selected_sgg_nms, selected_house_type)
             st.plotly_chart(fig)
