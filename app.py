@@ -10,7 +10,7 @@ def type_scatter(df, house_type):
     df_filtered = df[df['HOUSE_TYPE'] == house_type]
     fig = px.scatter(df_filtered, x='BLDG_AREA', y='OBJ_AMT', 
                      title=f'{house_type} 건물 면적별 부동산 매매 가격',
-                     labels={'BLDG_AREA': '건물 면적(㎡)', 'OBJ_AMT': '매매 가격(만 원)'},
+                     labels={'BLDG_AREA': '건물 면적 (㎡)', 'OBJ_AMT': '매매 가격 (만 원)'},
                      trendline='ols',
                      trendline_color_override="red")
     
@@ -22,9 +22,16 @@ def type_scatter(df, house_type):
                       template='plotly_white',
                       yaxis_tickformat=',',
                       legend=dict(orientation='h', xanchor="center", x=0.85, y=1.1),
-                      barmode='group')
+                      barmode='group',
+                      xaxis=dict(title_font=dict(family="나눔고딕", color="black")),
+                      yaxis=dict(title_font=dict(family="나눔고딕", color="black")))
     
     fig.update_traces(marker=dict(size=8, color='#00CC00', line=dict(width=2, color='DarkSlateGrey')))
+
+    fig.update_traces(hovertemplate="<b>건물 면적</b>: %{x} (㎡)<br><b>매매 가격</b>: %{y} (만 원)<extra></extra>")
+    trendline_trace = fig.data[-1]
+    trendline_trace.hovertemplate = '<b>건물 면적</b>: %{x} (㎡)<br><b>매매 가격</b>: %{y} (만 원)<extra></extra>'
+
     fig.update_xaxes(title_font_family="나눔고딕", color="black")
     fig.update_yaxes(title_font_family="나눔고딕", color="black")
 
@@ -47,12 +54,12 @@ def type_mean(df, year, month, housing_type):
         '단독다가구': '자치구별 단독다가구 매매(실거래가) 평균',
         '연립다세대': '자치구별 연립다세대 매매(실거래가) 평균'
     }
-    title = f"{title_map[housing_type]} <br><sup> 단위(만원)</sup>"
+    title = f"{title_map[housing_type]} <br>"
 
     # 시각화
     fig = px.bar(filtered_df, x='SIG_KOR_NM', y='mean',
                  title=title,
-                 labels={'mean': '매매값', 'SIG_KOR_NM': '자치구명'},
+                 labels={'mean': '매매 가격 (만 원)', 'SIG_KOR_NM': '자치구명'},
                  color='mean',
                  color_continuous_scale='greens')
     
@@ -65,7 +72,13 @@ def type_mean(df, year, month, housing_type):
                       template='plotly_white',
                       xaxis_tickangle=90,
                       yaxis_tickformat=',',
-                      legend=dict(orientation='h', xanchor="center", x=0.85, y=1.1))
+                      legend=dict(title_font_family="나눔고딕", font=dict(size= 15), 
+                                  orientation='h', xanchor="center", x=0.85, y=1.1),
+                      xaxis=dict(title_font=dict(family="나눔고딕", color="black")),
+                      yaxis=dict(title_font=dict(family="나눔고딕", color="black")),
+                   
+    )
+
     
     # y값 숫자 형식 변경
     fig.update_coloraxes(colorbar_tickprefix='', colorbar_tickformat=',')
@@ -74,6 +87,8 @@ def type_mean(df, year, month, housing_type):
     # x, y축 폰트 및 색상 변경
     fig.update_xaxes(title_font_family="나눔고딕", color="black", tickangle=-45)
     fig.update_yaxes(title_font_family="나눔고딕", color="black")
+
+    fig.update_traces(hovertemplate="<b>자치구명</b>: %{x}<br><b>매매 가격</b>: %{y} (만 원)<extra></extra>")
 
     return fig
 
@@ -96,7 +111,7 @@ def house_price_trend(df, sgg_nms, house_type):
                   x='YearMonth', 
                   y='OBJ_AMT', 
                   color='SGG_NM', 
-                  labels={'YearMonth': '계약일', 'OBJ_AMT': '평균 거래 가격 (만원)'}, 
+                  labels={'YearMonth': '계약일', 'OBJ_AMT': '평균 거래 가격 (만 원)'}, 
                   title=f'{house_type} 가격 변동 추이 비교',
                   hover_name='SGG_NM')
 
@@ -104,7 +119,7 @@ def house_price_trend(df, sgg_nms, house_type):
     fig.update_layout(plot_bgcolor='#F5FBFC',
                       paper_bgcolor='#F5FBFC',
                       xaxis_title='계약일', 
-                      yaxis_title='평균 거래 가격 (만원)',
+                      yaxis_title='평균 거래 가격 (만 원)',
                       yaxis_tickformat=',', 
                       hovermode="x unified",
                       legend_title='자치구명',
@@ -118,7 +133,7 @@ def house_price_trend(df, sgg_nms, house_type):
     # hover 내용 변경
     fig.update_traces(hovertemplate="<b>자치구명</b>: %{hovertext}<br>" +
                                 "<b>계약일</b>: %{x}<br>" +
-                                "<b>평균 거래 가격</b>: %{y:.2f} (만원)<extra></extra>")
+                                "<b>평균 거래 가격</b>: %{y:.2f} (만 원)<extra></extra>")
     return fig
 
 def main():
