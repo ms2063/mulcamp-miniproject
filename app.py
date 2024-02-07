@@ -87,7 +87,7 @@ def type_mean(df, year, month, housing_type):
     # x, y축 폰트 및 색상 변경
     fig.update_xaxes(title_font_family="나눔고딕", color="black", tickangle=-45)
     fig.update_yaxes(title_font_family="나눔고딕", color="black")
-
+    # hover 내용 변경
     fig.update_traces(hovertemplate="<b>자치구명</b>: %{x}<br><b>매매 가격</b>: %{y} (만 원)<extra></extra>")
 
     return fig
