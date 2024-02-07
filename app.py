@@ -14,26 +14,30 @@ def type_scatter(df, house_type):
                      trendline='ols',
                      trendline_color_override="red")
     
-    fig.update_layout(plot_bgcolor='#F5FBFC',
+    fig.update_layout(#plot_bgcolor='rgba(0,0,0,0)',
+                      #paper_bgcolor='rgba(0,0,0,0)', 
+                      plot_bgcolor='#F5FBFC',
                       paper_bgcolor='#F5FBFC',
+                      title_font=dict(color='black'), 
                       title_font_family="나눔고딕",
                       title_font_size=18,
+                      xaxis_title_font=dict(color='black'),  
+                      yaxis_title_font=dict(color='black'),
                       hovermode="x unified",
                       template='plotly_white',
                       yaxis_tickformat=',',
                       legend=dict(orientation='h', xanchor="center", x=0.85, y=1.1),
                       barmode='group',
-                      xaxis=dict(title_font=dict(family="나눔고딕", color="black")),
-                      yaxis=dict(title_font=dict(family="나눔고딕", color="black")))
-    
+                      xaxis=dict(title_font=dict(family="나눔고딕", color="black"), tickfont=dict(family="나눔고딕", color='black')),
+                      yaxis=dict(title_font=dict(family="나눔고딕", color="black"), tickfont=dict(family="나눔고딕", color='black')))
+                      
+                      
     fig.update_traces(marker=dict(size=8, color='#00CC00', line=dict(width=2, color='DarkSlateGrey')))
 
     fig.update_traces(hovertemplate="<b>건물 면적</b>: %{x} (㎡)<br><b>매매 가격</b>: %{y} (만 원)<extra></extra>")
     trendline_trace = fig.data[-1]
     trendline_trace.hovertemplate = '<b>건물 면적</b>: %{x} (㎡)<br><b>매매 가격</b>: %{y} (만 원)<extra></extra>'
 
-    fig.update_xaxes(title_font_family="나눔고딕", color="black")
-    fig.update_yaxes(title_font_family="나눔고딕", color="black")
 
     return fig
     
@@ -66,27 +70,26 @@ def type_mean(df, year, month, housing_type):
     # 레이아웃 업데이트
     fig.update_layout(plot_bgcolor='#F5FBFC',
                       paper_bgcolor='#F5FBFC',
+                      title_font=dict(color='black'), 
                       title_font_family="나눔고딕",
                       title_font_size=18,
                       hovermode="x unified",
                       template='plotly_white',
                       xaxis_tickangle=90,
                       yaxis_tickformat=',',
-                      legend=dict(title_font_family="나눔고딕", font=dict(size= 15), 
-                                  orientation='h', xanchor="center", x=0.85, y=1.1),
-                      xaxis=dict(title_font=dict(family="나눔고딕", color="black")),
-                      yaxis=dict(title_font=dict(family="나눔고딕", color="black")),
-                   
+                      xaxis=dict(title_font=dict(family="나눔고딕", color="black"), 
+                                 tickangle=-45, tickfont=dict(family="나눔고딕", color='black')),
+                      yaxis=dict(title_font=dict(family="나눔고딕", color="black"), 
+                                 tickfont=dict(family="나눔고딕", color='black')),
+                      coloraxis_colorbar=dict(title=dict(text='매매 가격 (만 원)', font=dict(family="나눔고딕",color='black', size=12)),
+                                              tickfont=dict(family="나눔고딕", color='black', size=12)),
+                      
     )
 
-    
     # y값 숫자 형식 변경
     fig.update_coloraxes(colorbar_tickprefix='', colorbar_tickformat=',')
     # marker 형식 변경
     fig.update_traces(marker_line=dict(width=2, color='DarkSlateGrey'))
-    # x, y축 폰트 및 색상 변경
-    fig.update_xaxes(title_font_family="나눔고딕", color="black", tickangle=-45)
-    fig.update_yaxes(title_font_family="나눔고딕", color="black")
     # hover 내용 변경
     fig.update_traces(hovertemplate="<b>자치구명</b>: %{x}<br><b>매매 가격</b>: %{y} (만 원)<extra></extra>")
 
@@ -118,18 +121,21 @@ def house_price_trend(df, sgg_nms, house_type):
     # 레이아웃 추가
     fig.update_layout(plot_bgcolor='#F5FBFC',
                       paper_bgcolor='#F5FBFC',
+                      title_font=dict(color='black'),
+                      title_font_family="나눔고딕", 
+                      
+                      hovermode="x unified",
+                      legend_title=dict(text="자치구명", font=dict(color="black", size=15)),
+                      legend=dict(title_font_family="나눔고딕",
+                                  font=dict(color="black", size=14)),
+                      # x축 y축 레이아웃 변경
                       xaxis_title='계약일', 
                       yaxis_title='평균 거래 가격 (만 원)',
-                      yaxis_tickformat=',', 
-                      hovermode="x unified",
-                      legend_title='자치구명',
-                      legend=dict(title_font_family="나눔고딕",
-                              font=dict(size= 15)),
-                      xaxis=dict(title_font=dict(family="나눔고딕", color="black")),
-                      yaxis=dict(title_font=dict(family="나눔고딕", color="black")))
+                      xaxis=dict(title_font=dict(family="나눔고딕", color="black"), 
+                                 tickformat="%Y년 %m월", tickfont=dict(family="나눔고딕", color='black')),
+                      yaxis=dict(title_font=dict(family="나눔고딕", color="black"), 
+                                 tickformat=',', tickfont=dict(family="나눔고딕", color='black')))
     
-    #날짜 형식 변경
-    fig.update_xaxes(tickformat="%Y년 %m월")
     # hover 내용 변경
     fig.update_traces(hovertemplate="<b>자치구명</b>: %{hovertext}<br>" +
                                 "<b>계약일</b>: %{x}<br>" +
