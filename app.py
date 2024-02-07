@@ -133,7 +133,8 @@ def house_price_trend(df, sgg_nms, house_type):
     # hover 내용 변경
     fig.update_traces(hovertemplate="<b>자치구명</b>: %{hovertext}<br>" +
                                 "<b>계약일</b>: %{x}<br>" +
-                                "<b>평균 거래 가격</b>: %{y:.2f} (만 원)<extra></extra>")
+                                "<b>평균 거래 가격</b>: %{y:,.0f} (만 원)<extra></extra>")
+                                                    
     return fig
 
 def main():
