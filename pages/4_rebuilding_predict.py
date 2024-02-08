@@ -1,16 +1,8 @@
 # -*- coding:utf-8 -*-
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import streamlit as st
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-
-import plotly.graph_objects as go
 import plotly.express as px
-from plotly.subplots import make_subplots
-import plotly
-
 import geopandas as gpd
 from matplotlib import font_manager, rc
 
