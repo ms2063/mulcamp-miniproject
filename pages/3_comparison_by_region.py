@@ -5,12 +5,10 @@ import plotly.graph_objects as go
 import plotly.express as px 
 import geopandas as gpd
 from datetime import datetime
-from dotenv import load_dotenv
 import os
 from plotly.subplots import make_subplots
 
-load_dotenv()
-#MAP_TOKEN = os.getenv('MAP_TOKEN')
+
 MAP_TOKEN = st.secrets["MAP_TOKEN"]
 st.set_page_config(
     page_title="메인",
