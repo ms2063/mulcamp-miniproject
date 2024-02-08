@@ -152,6 +152,7 @@ def house_price_trend(df, sgg_nms, house_type):
 
 def main():
     st.title('부동산 유형별 데이터 분석')
+    st.divider()
 
     # 분석 유형 선택
     analysis_type = st.sidebar.selectbox("분석 유형을 선택하세요.",
