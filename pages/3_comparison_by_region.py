@@ -4,20 +4,14 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px 
 import geopandas as gpd
-import contextily as ctx
-import json
 from datetime import datetime
 from dotenv import load_dotenv
 import os
-import math
-import matplotlib.pyplot as plt
-import xyzservices.providers as xyz
-import plotly.io as pio
 from plotly.subplots import make_subplots
 
 load_dotenv()
-MAP_TOKEN = os.getenv('MAP_TOKEN')
-
+#MAP_TOKEN = os.getenv('MAP_TOKEN')
+MAP_TOKEN = st.secrets["MAP_TOKEN"]
 st.set_page_config(
     page_title="메인",
     page_icon=None,  # 아이콘 없음

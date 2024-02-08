@@ -4,7 +4,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 from streamlit_option_menu import option_menu
 import streamlit.components.v1 as html
-import numpy as np
 from plotly.subplots import make_subplots
 import math
 

@@ -4,7 +4,7 @@ import plotly.express as px
 import folium
 from streamlit_folium import folium_static
 
-file_path = "./sampled_data2.geojson"
+file_path = "./data/sampled_data2.geojson"
 gdf = gpd.read_file(file_path)
 
 st.title('서울시 건물 평균 층수 대시보드')
