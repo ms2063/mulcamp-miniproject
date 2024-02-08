@@ -19,7 +19,7 @@
 
 # 데모페이지
 - Streamlit에서 구현한 Demo는 다음과 같습니다.
-  + https://app-api-qkxzk2zdlacnuwxcqwxyyq.streamlit.app/](https://mulcamp-miniproject-tsxpry9q44xmqu4hrbtrtj.streamlit.app/
+  + [https://app-api-qkxzk2zdlacnuwxcqwxyyq.streamlit.app/](https://mulcamp-miniproject-tsxpry9q44xmqu4hrbtrtj.streamlit.app/)
 
  ## 주요 기능
  - 본 프로젝트에서 자체 개발 및 활용한 주요 메서드는 다음과 같습니다.
