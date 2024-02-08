@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+st.set_page_config(
+    page_title="메인",
+    page_icon=None,  # 아이콘 없음
+    layout="wide", 
+    initial_sidebar_state="expanded"
+    )
+
 @st.cache_data
 def load_data(filepath):
     return pd.read_csv(filepath)
