@@ -164,7 +164,7 @@ def main():
         #데이터 불러오기 
         df = load_data('./data/data.csv')  
         fig = type_scatter(df, house_type)
-        st.plotly_chart(fig)
+        st.plotly_chart(fig, use_container_width=True)
     elif analysis_type == '자치구별 매매 가격 평균':
         year = st.sidebar.selectbox('년도를 선택하세요.', ['2024', '2023'])
 
@@ -192,7 +192,7 @@ def main():
         }
         df = load_data(file_paths[housing_type])
         fig = type_mean(df, int(year), month, housing_type)
-        st.plotly_chart(fig)
+        st.plotly_chart(fig, use_container_width=True)
     
     elif analysis_type == "자치구별 가격 변동 추이":
         df = load_data('./data/data.csv') 
@@ -207,7 +207,7 @@ def main():
         # 시각화 
         if selected_sgg_nms and selected_house_type:
             fig = house_price_trend(df, selected_sgg_nms, selected_house_type)
-            st.plotly_chart(fig)
+            st.plotly_chart(fig, use_container_width=True)
         else:
             st.warning('자치구명과 주택 유형을 선택해주세요.')
 
