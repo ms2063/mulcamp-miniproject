@@ -166,7 +166,7 @@ def main():
         fig = type_scatter(df, house_type)
         st.plotly_chart(fig)
     elif analysis_type == '자치구별 매매 가격 평균':
-        year = st.sidebar.selectbox('년도를 입력하세요.', ['2024', '2023'])
+        year = st.sidebar.selectbox('년도를 선택하세요.', ['2024', '2023'])
 
         #선택된 년도에 따른 조건문
         if year == '2024':
@@ -177,8 +177,8 @@ def main():
 
         #month_options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
             
-        month = st.sidebar.selectbox('월을 입력하세요.', month_options)
-        month = int(month)
+        month = int(st.sidebar.selectbox('월을 선택하세요.', month_options))
+        #month = int(month)
     
         
         housing_type = st.sidebar.selectbox('부동산 유형을 선택하세요.',

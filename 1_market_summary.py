@@ -60,9 +60,9 @@ def main():
         unique_month = sorted(df[df['deal_year'] == deal_year]['deal_month'].unique())
 
         if deal_year == 2023:
-            deal_month = st.slider("Select a Month.", unique_month[0], unique_month[-1])
+            deal_month = st.selectbox("Select a Month.", unique_month)
         elif deal_year == 2024:
-            deal_month = st.slider("Select a Month.", unique_month[0], unique_month[0]+1)
+            deal_month = st.sidebar.selectbox("Select a Month.", unique_month)
             
         st.markdown(f'Chosen: <font color="green">{deal_year}/{deal_month}</font>', unsafe_allow_html=True)
 
