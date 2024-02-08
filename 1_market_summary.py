@@ -56,7 +56,7 @@ def main():
         }
         )
         SGG_NM = st.selectbox("Select a Region.", sorted(list(df['SGG_NM'].unique())))
-        deal_year = st.radio("Selece a Year.", sorted(list(df['deal_year'].unique())))
+        deal_year = st.radio("Select a Year.", sorted(list(df['deal_year'].unique())))
         unique_month = sorted(df[df['deal_year'] == deal_year]['deal_month'].unique())
 
         if deal_year == 2023:
