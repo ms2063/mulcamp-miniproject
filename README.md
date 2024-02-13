@@ -24,32 +24,19 @@
  ## 주요 기능
  - 본 프로젝트에서 자체 개발 및 활용한 주요 메서드는 다음과 같습니다.
 
-| Functions | Location | Description |
-|---|---|---|
-| main | app.py  | for deploy |
-| load_api | data_collect.py | for collecting data from API |
-
-### main()
-- main 함수는 ~~~
-```python
-def main():
-   # 코드 설명
-```
-- 결과 이미지가 있으면 표시 
-
-### data_collect()
--  data_collect() 함수는 ~~~~
-
+- **`load_data(filepath)`**: 주어진 파일 경로에서 CSV 데이터를 로드합니다. 이 함수는 pandas를 사용하여 데이터를 읽고 DataFrame으로 반환합니다.
+- **`type_scatter(df, house_type)`**: 선택된 부동산 유형에 따라 건물 면적과 매매 가격 사이의 관계를 scatter plot으로 보여줍니다. Plotly를 사용하여 시각화합니다.
+- **`type_mean(df, year, month, housing_type)`**: 지정된 년도와 월, 그리고 부동산 유형에 따라 자치구별 매매 가격의 평균을 bar chart로 시각화합니다.
+- **`house_price_trend(df, sgg_nms, house_type)`**: 선택된 자치구명과 부동산 유형에 따른 거래 가격의 변동 추이를 line chart로 보여줍니다.
+- **`main()`**: 사용자 인터페이스를 통해 분석 유형을 선택하고, 해당 분석에 필요한 데이터를 시각화합니다. 이 함수는 Streamlit을 사용하여 대시보드를 구성합니다.
 
 # 발표자료 PDF 
 - 발표자료 PDF는 아래와 같습니다.
-  + [발표자료_2024](서울_부동산_시장_인사이트_대시보드.pdf)
+  + [서울_부동산_시장_인사이트_대시보드.pdf](서울_부동산_시장_인사이트_대시보드.pdf)
 
 # Release Notes
 - 개발 릴리스 노트는 `Releases` 클릭하여 확인하여 주시기를 바랍니다.
-  + 참조 : https://github.com/dschloe/streamlit-api/releases
-  + 작성방법 : https://docs.github.com/ko/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+
 
 # License
-- 라이선스 링크 아웃링크로 처리
-- [MIT Licence](LICENSE)
+- 이 프로젝트는 [MIT Licence](LICENSE)에 따라 라이센스가 부여됩니다.
